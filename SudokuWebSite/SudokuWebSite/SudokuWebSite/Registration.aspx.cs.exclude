@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
+
+
+public partial class Registration : System.Web.UI.Page
+{
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnRegistration_Click(object sender, EventArgs e)
+    {
+        string poruka;
+        if (txtFirstName.Text == "")
+            poruka = "Enter first name.";
+
+        if (txtLastName.Text == "")
+            poruka += "Enter last name.";
+
+        if (txtState.Text == "")
+            poruka += "Enter state.";
+
+        if (txtUserName.Text == "")
+            poruka += "Enter username.";
+
+        if (txtPassword.Text == "" || txtPassword.Text.Length < 8)
+            poruka += "Password must be at least 8 charcters long";
+
+        if (txtPassAgain.Text != txtPassword.Text || txtPassAgain.Text == "")
+            poruka += "Password is not the same.";
+
+        if (poruka != "")
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + poruka + "');", true);
+        else
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Successful registration" + "');", true);
+
+        if (IsValidEmail(txtEmail.Text) is false)
+            poruka += "Wrong email.";
+        // zasto ti ne radis
+
+    }
+
+    protected void txtFirstName_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnRegistration_Click1(object sender, EventArgs e)
+    {
+
+
+
+    }
+
+    bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+}
+
+
+
+    

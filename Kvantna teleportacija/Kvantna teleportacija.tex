@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+\title{Kvantna teleportacija}
+\author {Dora Parmać}
+\date{Veljača 2020}
+
+\newtheorem{thm}{No-cloning teorem}
+\begin{document}
+	\newpage 
+	\maketitle
+	
+	
+	\section{Uvod}
+	
+	
+	Kvantna teleportacija je proces u kojem kvantna informacija (stanje neke čestice, npr. atoma ili fotona) može prenijeti s jedne lokacije na drugu uz pomoć klasične komunikacije i kvantnog sprezanja između polazne i krajnje lokacije. \newline
+	Budući se temelji na klasičnom komunikacijskog prijenosu, ne može se koristiti za prijenos informacija klasičnih bitova, bržih od brzine svjetlosti. \newline
+	Iako je dokazano da se može teleportirati jedan ili više qubita informacija između dvije spregnute čestice, još uvijek nije moguće to napraviti na česticama većima od molekula.\newline
+	Kvatna teleportacija nije način teleportacije već komunikacije i to informacija, a ne mase. Zadužena je za prijenos qubita s jedne lokacije na drugu bez fizičkog prijenosa same čestice.\newline
+	Jedan od vodećih fizičara odgovoran za kvantnu teleportaciju je Charles Bennett, a prvo je bila testirana na samim fotonima da bi se kasnije proširila na atome, ione, elektrone i sklopove.
+	Najveća trenutno izmjerena udaljenost kvantnog teleportiranja je 1,400 km izmjerena od strane kineske grupe fizičara.
+	\newpage
+	\section{ Kvantna teleportacija}
+	\subsection{ Bellovo stanje ili EPR par}
+	\newline
+	Uvedimo najprije pojam EPR para.
+	Pretpostavimo da imamo dva qubita. Kada bi se radilo o klasičnim bitovima, imali bi 4 moguća stanja 00,01,10,11. Kada pričamo o sustavu s 2 qubita, također imamo 4 stanja $\ket {00}, \ket {01},\ket {10},\ket {11}$,s tim da par qubita može postojati 
+	i u stanju superpozicije. 
+	
+	Jedno od najvažnijh stanja sustava s dva qubita je tzv. Bellovo stanje ili EPR par.
+	
+	Bellovo stanje ima svojstvo da tijekom mjerenja prvog stanja dobijemo 0 s vjerojatnosti $\frac{1}{2}$ te je stanje nakon mjerenja $\ket {\Phi} = \ket {00}$, a 1 s vjerojatnosti $\frac{1}{2}$ i stanje nakon mjerenja je $\ket{\Phi} = \ket {11}$.  \bigbreak 
+	Važno je naglasiti da s u qubiti spregnuti, što znači slijedeće: \newline Pretpostavimo da Alice ima qubit koji može biti 0 i 1. Ako Alice mjeri svoj qubit u standardnoj bazi, tada je rezultat potpuno random, 0 ili 1, s vjerojatnošću ½. Ali ako Bob izmjeri svoj qubit, tada će rezultat biti isti kao kod Alice tj. Na prvu Bob bi dobio random rezultat no kada bi njih dvoje komunicirali saznali bi da rezultati zapravo nisu random, već su savršeno povezani. 
+	\bigbreak
+	Odnosno, za spregnuto stanje su nam potrebna dva pojma: 
+	
+	\begin{enumerate}
+		\item Superpozicija (čestica je u svim stanjima dok se ne promatra)
+		\item Mjerenje (ako mjerimo česticu koja je u superpoziciji, mora dati jedno od dva stanja kao rezultat)
+	\end{enumerate}
+	
+	
+	Kao rezultat imamo da mjerenja drugog qubita uvijek daje isti rezultat kao mjerenje prvog qubita, tj rezultati mjerenja su povezani.}
+
+Ova stanja su bila važna tema rasprave poznatog rada EPR paradoks by Einstein, Podolsky, Rosen koji su prvi ukazali na ova čudna svojstva I tvrdili da je kvantna mehanika nepotpuna. Povezanost bi nastala iz dva objašnjenja: ili su se čestice “dogovorile” unaprijed, kada su nastale (pretpostavka realizma) ili informacije mogu putovati brže od brzine svjetlosti što narušava Einsteinovu teoriju relativnosti (pretpostavka lokalnosti)
+
+No, John Bell je zapravo pokazao da su ovakva stanja moguća I time postavio temelje prijenosa informacija u kvantnoj mehanici.
+
+\newpage
+\subsection{Što je zapravo kvantna teleportacija?}
+
+
+Zamislimo sljedeću situaciju. Alice i Bob su se davno upoznali, no sad žive daleko i nisu se jako dugo vidjeli. Dok su bili zajedno, generirali su EPR par, tako da je svatko od njih uzeo po jedan qubit od danog EPR para. Godinama kasnije, Bob je nestao, a Alice bi trebala Bobu dostaviti qubit $\ket{\psi} $
+
+Ona ne zna stanje qubita i jedino što može je poslati klasičnu informaciju Bobu, a zakoni kvantne mehanike je spriječavaju da sazna stanje kada ima samo jedan qubit. S druge strane, i kada bi znala stanje $\ket{\psi}$, trebalo bi joj beskonačno klasičnih informacija da opiše stanje $\ket{\psi}$.
+
+No, kvatna teleportacija joj može pomoći u njenoj situaciji tako da se izmjeri stanje pomoću Bellovih nejednakosti na jednom od EPR qubita i manipulira stanje drugog.
+\newline
+
+Protokol je sljedeći:
+
+\begin{enumerate}
+	\item Generira se EPR par, jedan qubit je na lokaciji A, jedan na lokaciji B
+	\item Na lokaciji A (Alice) odvija se Bellovo mjerenje, i Alice mjeri dva qubita koje ima, te dobiva jedan od 4 klasična rezultata: 00,01,10,11
+	\item Dva qubita su poslana klasičnim komunikacijskim kanalanom s mjesta A na mjesto B (Bobu). Ovo  je jedini vremensko zahtjevni korak, zbog ograničenja brzine svjetlosti
+	\item Zahvaljujući mjerenju na mjestu A (Alice), qubit na mjestu B (Bob) se nalazi u jednom od četri moguća stanja. Od ova 4 stanja, jedan je identičan originalnom kvantnom stanju $\ket{\psi}$, dok su ostala tri dosta blizu. 
+\end{enumerate}
+\end
+
+Pogledajmo kako to izgleda na primjeru.
+
+
+Stanje koje želimo teleportirati je:
+
+{\centering
+	$\ket{\psi} = \alpha\ket{0} +\beta \ket {1}$ 
+	\par}
+
+gdje su $\alpha$ i $\beta$ nepoznate amplitude.
+
+Definiramo input kao :   
+
+{\centering
+	$\ket{\psi0}  = \ket{\psi} \ket{\beta00}$   = $\frac{1}{\sqrt{2}} [ \alpha\ket{0}(\ket{00}+\ket{11}) +   \beta\ket{1}(\ket{00}+\ket{11})]$ 
+	\par
+}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{sklop.png}
+	\label{fig:sklop}
+\end{figure}
+
+gdje prva dva qubita (lijevo) pripadaju Alice, a treći qubit Bobu.\newline
+\break
+Alicin drugi qubit i Bobov qubit startaju kao EPR par. 
+\break
+Alice šalje svoj qubit preko CNOT vrata: 
+
+{\centering
+	$\ket{\psi1}  = \frac{1}{\sqrt{2}} [ \alpha\ket{0}(\ket{00}+\ket{11}) +   \beta\ket{1}(\ket{10}+\ket{01})]$ 
+	\par
+}
+\newline
+\break
+
+Zatim Alice šalje prvi qubit preko Hadamardovih vrata:
+
+{\centering
+	$\ket{\psi2}  = \frac{1}{2} [ \alpha(\ket{0}+\ket{1})(\ket{00}+\ket{11}) +   \beta(\ket{0}-\ket{1})(\ket{10}+\ket{01})]$ 
+	\par
+}
+\newline
+
+Ovaj zapis možemo pojednostavljeno zapisati kao:
+
+{\centering
+	$\ket{\psi2}  = \frac{1}{2} [\ket{00} (\alpha\ket{0} + \beta\ket{1}) + \ket{01} (\alpha\ket{0} + \beta\ket{1}) 
+	+ \ket{10} (\alpha\ket{0} - \beta\ket{1}) + \ket{11} (\alpha\ket{0} + \beta\ket{1})] $ 
+	\par
+}
+\bigbreak
+Ovaj izraz se može prirodno podijeliti u 4 podizraza. Prvi nam kaže da su Alicini qubiti u stanju $\ket {00}$, a Bobovi u $\alpha\ket{0} +\beta \ket {1}$ što je originalno stanje $\ket {\psi}$.
+Ako Alice mjeri stanje i dobije 00 kao rezultat, tada će Bobov sustav biti u stajnu $\ket {\psi}$.
+Slično, iz prethodnog primjera, možemo pročitati Bobovo stanje nakon mjerenja, imajući na umu Alicine rezultate:
+
+Ovisno o rezultatu Alicinog mjerenja, Bobov qubit će biti u jednom od ova 4 stanja. Naravno, da bi znali u kojem točno stanju će biti, Bobu mora biti rečeno što je Alice izmjerila. Ovo je upravo razlog zašto prijenos informacije ne može biti brži od brzine svjetlosti.
+
+Jednom kada Bob sazna rezultat mjerenja, može proizvesti početno stanje $\ket{\psi}$ primjenom odgovarajućih kvantnih vrata.
+
+Npr, ako se izmjeri 00, Bob ne mora ništa napraviti.
+Ako se izmjeri 01, Bob može "popraviti" stanje primjenom X vrata.
+Ako se izmjeri 10, primjenjujemo Z vrata, a ako se izmjeri 11 primjenjujemo X vrata pa Z vrata. 
+Zaključno, Bob mora primjeniti transofmraciju $Z^M1*X^M2$ na svom qubitu da bi dobio stanje  $\ket{\psi}$ .
+
+
+Imajmo na umu još nekoliko stvari:
+\begin{enumerate}
+	\item  Dopušta li teleportacija prijenos kvantnih stanja brže od brzine svjetlosti? Odgovor je ne, jer Einsteinova teorija relativnosti tvrdi da bi prijenos informacija brzinom većom od brzine svjetlosti značilo slanje informacija nazad u vrijeme.
+	\item  Prilikom teleportacije, stvara se kopija stanja što je u kontradikciji s "No-cloning" teoremom. Na sreću, ova kontradikcija je samo prividna jer nakon teleportacije, samo je dani qubit u stanju  $\ket{\psi}$, dok se originalni qubit nalazi u jednom od dva klasična stanja, $\ket {0} i \ket {1}$, uzimajući u obzir rezultate mjerenja prvog qubita.
+\end{enumerate}
+
+
+\begin{thm} 
+	Pretpostavimo da imamo kvantni stroj s dva slota, A i B. Slot A ili data slot počinje u kvantnom stanju $\ket{\psi}$ koje bi trebali kopirati u slot B ili target slot. Prepotstavljamo da slot B ima stanje  $\ket{s}$. 
+	
+	Početno stanje stroja za kopiranje je: 
+	
+	{\centering
+		$\ket{\psi} 	\otimes \ket{s}$
+		\par}
+	
+	Djelujući unitarnim operatorom, imamo: 
+	
+	{\centering
+		$\ket{\psi} 	\otimes \ket{s} \rightarrow U (\ket{\psi} 	\otimes \ket{s}) = \ket{\psi} 	\otimes \ket{\psi}$
+		\par} 
+	
+	Pretpostavimo da se kopiraju dva stanja $\ket{\psi}$  i $\ket{\varphi}$. 
+	
+	Tada imamo: 
+	
+	{\centering
+		$U (\ket{\psi} 	\otimes \ket{s}) = \ket{\psi} 	\otimes \ket{\psi}$
+		$U (\ket{\varphi} 	\otimes \ket{s}) = \ket{\varphi} 	\otimes \ket{\varphi}$
+		\par}
+	
+	Odnosno, 
+	
+	{\centering
+		$\braket{\psi|\varphi}$ =$ (\braket{\psi|\varphi})^2$ 
+		\par}
+	
+	Ali $x = x^2$ ima dva rješenja, $x = 0$ i $x = 1$, pa je ili $ \ket {\psi} = \ket {\Phi}  ili  su  \ket {\psi} \ket {\Phi}$  ortogonalni.
+	Dakle, stroj za kloniranje može klonirati samo stanja koja su ortogonalna pa zaključujemo da je stroj za kvatno kloniranje nemoguć.
+	
+	Npr, ako imamo dva kvatna stanja $\ket {\psi} = \ket {0} i \ket {\Phi} =\frac{\ket {0} + \ket {1}}{\sqrt{2}} $, njih nije moguće klonirati budući nisu ortogonalni.
+	Pokazali smo da je nemoguće savršeno kopirati nepoznato kvantno stanje koristeći unitarni operator.
+\end{thm}
+\newpage
+\section{Sažetak}
+
+Kvantna teleportacija je način prijenosa informacija, ne samih čestica. \newline
+
+Alice želi Bobu poslati kvantnu informaciju, tj. želi poslati stanje   $\ket{\psi} = \alpha\ket{0} +\beta \ket {1}$ .
+To znači da želi poslati informacije $\alpha$ i $\beta $ Bobu. \newline
+
+U kvantnoj mehanici postoji No-cloning teorem koji tvrdi da se ne može napraviti točna kopija nepoznatog kvantnog stanja jer prilikom kopiranja zapravo izvršavamo mjerenje koje uništava kvantno stanje. Kopiranje je dopušteno jedino kod klasičnog prijenosa informacija.\newline
+
+No, manipulacijom klasičnih bitova i spregnutosti Alice može poslati stanje $\ket{\psi}$
+Bobu. I ovaj proces zovemo teleportacije jer će Bob na kraju upravo imati dano stanje $\ket{\psi}$. 
+\end{document}
+
+

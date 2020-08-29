@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<script runat="server">
+
+    Protected Sub btnRegistration_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnRegistratioon_Click(sender As Object, e As EventArgs)
+
+    End Sub
+</script>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Sudoku Online Competition</title>
+    <meta name="description" content="onlinesudokucompetition.com"/>
+    <meta name="keywords" content="sudoku"/>
+
+     <link rel="stylesheet" href="style.css"/>
+    
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 695px;
+            height: 51px;
+        }
+        .auto-style8 {
+            width: 528px;
+            height: 51px;
+        }
+        .auto-style9 {
+            width: 410px;
+        }
+        .auto-style15 {
+            width: 286px;
+        }
+        .auto-style16 {
+            width: 321px;
+        }
+        .auto-style17 {
+            width: 406px;
+            height: 31px;
+        }
+        .auto-style18 {
+            width: 338px;
+            height: 31px;
+        }
+        .auto-style19 {
+            width: 406px;
+        }
+        .auto-style21 {
+            width: 931px;
+            height: 1108px;
+            margin-right: 0px;
+        }
+        .auto-style22 {
+            width: 338px;
+        }
+        .auto-style23 {
+            width: 188px;
+        }
+        .auto-style24 {
+            width: 96%;
+        }
+        .auto-style25 {
+            width: 413px;
+            height: 88px;
+            margin-left: 0px;
+        }
+        .auto-style26 {
+            width: 406px;
+            height: 44px;
+        }
+        .auto-style27 {
+            width: 338px;
+            height: 44px;
+        }
+        </style>
+    
+
+</head>
+<body style="width: 62%; height: 943px">
+    <form id="form1" runat="server">
+    <div class="auto-style21">
+        <br />
+      <table class="auto-style24">
+        <tr>
+         <th class="auto-style9"><img src="gornjidio.png" class="auto-style25"></img></th>
+         <th>
+             <asp:HyperLink ID="hyperlinkRegistration" runat="server" NavigateUrl="~/Registration.aspx">Registration</asp:HyperLink>
+            </th> 
+          <th> 
+              <asp:HyperLink ID="hyperlinkLogin" runat="server" NavigateUrl="~/LogInspx.aspx">Log In</asp:HyperLink>
+            </th>
+            <th>&nbsp;</th>
+            <th class="auto-style23">
+                <asp:Button ID="btnHrvReg" runat="server" Text="HRV" />
+                <asp:Button ID="btnEngReg" runat="server" Text="ENG" />
+            </th>
+         </tr>  
+       </table>
+
+        <br />
+
+
+        <table class="table1" style="width: 98%">
+          <tr>
+            <th class="auto-style15"><asp:HyperLink ID="hyperlinkHome" runat="server" ForeColor="Black" NavigateUrl="~/MainPage.aspx">Home</asp:HyperLink></th>
+            <th class="auto-style16"><asp:HyperLink ID="hyperlinkPlay" runat="server" ForeColor="Black" NavigateUrl="~/PopisTurnira.aspx">Let&#39;s play!</asp:HyperLink></th> 
+            <th><asp:HyperLink ID="hyperlinkTurniriUTijeku" runat="server" ForeColor="Black" NavigateUrl="~/RangLista.aspx">Rang Lista</asp:HyperLink> </th>
+          </tr>  
+        </table>
+
+        <br /> 
+
+        <table class="table2" style="width: 904px; height: 482px">
+	    <tr>
+	    <td class="auto-style19"> &nbsp &nbsp; </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+        <tr>
+	    <td class="auto-style19"> &nbsp &nbsp; </td>
+            <asp:TextBox ID="txtFirstName" runat="server" OnLoad="txtFirstName_Load"></asp:TextBox>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>           
+
+	    <tr>
+	    <td class="auto-style19"> Last Name: &nbsp 
+                       
+
+	    <tr>
+	    <td class="auto-style19"> Last Name: &nbsp 
+            <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+        &nbsp; </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+
+	    <tr>
+	    <td class="auto-style19"> Country:
+            <asp:DropDownList ID="DropDownList1" runat="server">
+            </asp:DropDownList>
+            &nbsp
+        &nbsp; </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+
+        <tr>
+	    <td class="auto-style26"> Username: &nbsp 
+            <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
+        &nbsp; </td>
+	    <td class="auto-style27"> </td> 
+	    </tr>
+
+         <tr>
+	    <td class="auto-style19"> Email: &nbsp 
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox> &nbsp; 
+            </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+
+	    <tr>
+	    <td class="auto-style19"> Password: &nbsp
+            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+        &nbsp; </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+
+	    <tr>
+	    <td class="auto-style19"> Password (again): &nbsp 
+            <asp:TextBox ID="txtPassAgain" runat="server"></asp:TextBox>
+             &nbsp;</td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+	    <tr>
+	    <td class="auto-style19">  &nbsp &nbsp; </td>
+	    <td class="auto-style22"> &nbsp;</td> 
+	    </tr>
+	    <tr>
+	    <td class="auto-style17">
+            <asp:Button ID="btnRegistration" runat="server" Text="Registration" OnClick="btnRegistratioon_Click" />
+            </td>
+	    <td class="auto-style18"></td>
+	    </tr>
+        </table>
+
+        <br /> <br /> 
+
+        <table>
+        <tr>
+            <td class="auto-style8">&copy; 2019 ONLINE SUDOKU COMPETITION </td>  
+            <td class="auto-style1">dora.parmac@gmail.com</td>
+        </tr>
+        </table>
+             </div>
+    </form>
+</body>
+</html>

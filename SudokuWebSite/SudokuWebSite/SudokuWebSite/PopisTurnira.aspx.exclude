@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Sudoku Online Competition</title>
+    <meta name="description" content="onlinesudokucompetition.com"/>
+    <meta name="keywords" content="sudoku"/>
+
+     <link rel="stylesheet" href="style.css"/>
+    
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 695px;
+            height: 51px;
+        }
+        .auto-style8 {
+            width: 519px;
+            height: 51px;
+        }
+        .auto-style9 {
+            width: 410px;
+        }
+        .auto-style15 {
+            width: 286px;
+        }
+        .auto-style16 {
+            width: 321px;
+        }
+        .auto-style21 {
+            width: 931px;
+            height: 1108px;
+            margin-right: 0px;
+        }
+        .auto-style23 {
+            width: 188px;
+        }
+        .auto-style24 {
+            width: 96%;
+        }
+        .auto-style25 {
+            width: 412px;
+        }
+        </style>
+    
+
+</head>
+<body style="width: 62%; height: 943px">
+    <form id="form1" runat="server">
+    <div class="auto-style21">
+        <br />
+      <table class="auto-style24">
+        <tr>
+         <th class="auto-style9"><img src="gornjidio.png" class="auto-style25"></img></th>
+         <th>
+             <asp:HyperLink ID="hyperlinkRegistration" runat="server" NavigateUrl="~/Registration.aspx">Registration</asp:HyperLink>
+            </th> 
+          <th> 
+              <asp:HyperLink ID="hyperlinkLogin" runat="server" NavigateUrl="~/LogInspx.aspx">Log In</asp:HyperLink>
+            </th>
+            <th>&nbsp;</th>
+            <th class="auto-style23">
+                <asp:Button ID="btnHrvReg" runat="server" Text="HRV" />
+                <asp:Button ID="btnEngReg" runat="server" Text="ENG" />
+            </th>
+         </tr>  
+       </table>
+
+        <br />
+
+
+        <table class="table1" style="width: 98%">
+          <tr>
+            <th class="auto-style15"><asp:HyperLink ID="hyperlinkHome" runat="server" ForeColor="Black" NavigateUrl="~/MainPage.aspx">Home</asp:HyperLink></th>
+            <th class="auto-style16"><asp:HyperLink ID="hyperlinkPlay" runat="server" ForeColor="Black" NavigateUrl="~/PopisTurnira.aspx">Let&#39;s play!</asp:HyperLink></th> 
+            <th><asp:HyperLink ID="hyperlinkTurniriUTijeku" runat="server" ForeColor="Black" NavigateUrl="~/RangLista.aspx">Rang Lista</asp:HyperLink> </th>
+          </tr>  
+        </table>
+
+        <br /> 
+
+        <table class="table2" style="width: 904px; height: 482px">
+	    <tr>
+	    <td class="auto-style32"> &nbsp &nbsp; </td>
+         <tr class="tr1"><td class="auto-style32">Naziv</td><td class="auto-style31">Mjesto </td><td class="auto-style33">Level</td><td class="auto-style34">Od</td><td class="auto-style35">Do</td><td class="auto-style36">Prijava</td>
+          </tr>
+            <tr>
+                <td class="auto-style32">&nbsp;Sudoku 1</td><td class="auto-style31">Split</td><td class="auto-style33">Easy</td><td class="auto-style34">1.3.2019.</td><td class="auto-style35">5.3.2019.</td><td class="auto-style36">
+                <asp:Button ID="Button1" runat="server" Text="Button" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style32">Sudoku 2</td><td class="auto-style31">Zagreb</td><td class="auto-style33">Medium</td><td class="auto-style34">1.4.2019.</td><td class="auto-style35">5.4.2019.</td><td class="auto-style36">
+                <asp:Button ID="Button2" runat="server" Text="Button" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style32">Sudoku 3</td><td class="auto-style31">Osijek</td><td class="auto-style33">Hard</td><td class="auto-style34">1.5.2019.</td><td class="auto-style35">5.4.2019.</td><td class="auto-style36">
+                <asp:Button ID="Button3" runat="server" Text="Button" />
+                </td>
+            </tr>
+           <td class="auto-style32"> &nbsp;</td> 
+	    </tr>
+
+        </table> 
+
+        <br /> <br />  
+
+        <table>
+        <tr>
+            <td class="auto-style8">&copy; 2019 ONLINE SUDOKU COMPETITION </td>  
+            <td class="auto-style1">dora.parmac@gmail.com</td>
+        </tr>
+        </table>
+             </div>
+    </form>
+</body>
+</html>

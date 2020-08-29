@@ -1,0 +1,506 @@
+KONTROLE ZA UNOS: 
+	<br />
+
+        Ime: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtIme" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtIme" ErrorMessage="Morate unijeti ime.">*</asp:RequiredFieldValidator>
+        <br />
+
+        Prezime: &nbsp;
+            <asp:TextBox ID="txtPrezime" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPrezime" ErrorMessage="Morate unijeti prezime.">*</asp:RequiredFieldValidator>
+        <br />
+
+        Grad: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="DropDownGradovi" runat="server" DataSourceID="ObjectDataSource4" DataTextField="City" DataValueField="City">
+        </asp:DropDownList>
+        <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="DataSetTableAdapters.GradoviZaDropDownTableAdapter"></asp:ObjectDataSource>
+        <br />
+
+        Država: &nbsp;&nbsp;
+            <asp:TextBox ID="txtDrzava" runat="server" MaxLength="2"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDrzava" ErrorMessage="Morate unijeti drzavu.">*</asp:RequiredFieldValidator>
+
+        <br />
+        ZIP: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtZip" runat="server" MaxLength="5"></asp:TextBox>
+            <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtZip" ErrorMessage="5 brojeva" MaximumValue="100000" MinimumValue="10000" Type="Integer"></asp:RangeValidator>
+        <br />
+
+        Ponovno ZIP: &nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtZipPonovo" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Mora biti isti Zip" ControlToValidate="txtZipPonovo" ControlToCompare="txtZip"></asp:CompareValidator>
+        <br />
+
+        Broj mobitela: &nbsp;&nbsp;
+            <asp:TextBox ID="txtBroj" runat="server"></asp:TextBox>
+            <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="[1000-9999]" MaximumValue="9999" MinimumValue="1000" ControlToValidate="txtBroj" Type="Integer"></asp:RangeValidator>
+        <br />
+
+        <br />
+         <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnSpremi" runat="server" Text="Spremi" OnClick="btnSpremi_Click" />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <br />
+___________________________________________________________________________________________________________________________________________________________
+WEB.CONFIG:
+
+  <appSettings>
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+    <add key="ConnStr" value="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\AUTHORS.mdf;Integrated Security=True"/>
+  </appSettings>
+_________________________________________________________________________________________________________________________________________________________
+PROCEDURA:
+
+CREATE PROCEDURE [dbo].[Procedure] 
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@State nchar (2),
+	@City nvarchar(50),
+	@Zip  nchar (5),    
+    @Phone nvarchar (50)  
+AS
+	BEGIN tran
+		INSERT INTO Authors(FirstName, LastName, [State], City, Zip, Phone) VALUES (@FirstName, @LastName, @State, @City, @Zip, @Phone)
+			IF @@ERROR <>0
+				BEGIN
+					ROLLBACK tran
+					RETURN -1
+				END
+			ELSE
+	COMMIT tran
+RETURN 0
+___________________________________________________________________________________________________________________________________________________________
+SPREMANJE:
+       	try
+        {
+            string connectionString = ConfigurationManager.AppSettings["ConnStr"];
+
+            SqlConnection sqlconnection = new SqlConnection(connectionString);
+
+            SqlCommand cmd = new SqlCommand("Procedure", sqlconnection);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@FirstName", txtIme.Text);
+            cmd.Parameters.AddWithValue("@LastName", txtPrezime.Text);
+            cmd.Parameters.AddWithValue("@State", txtDrzava.Text);
+            cmd.Parameters.AddWithValue("@City", DropDownGradovi.SelectedValue);
+            cmd.Parameters.AddWithValue("@Zip", txtZip.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtBroj.Text);
+
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+
+            txtRezultat.Text = "Uspjesno spremljeno, " + txtIme.Text;
+
+            GridView1.DataBind();
+
+            GridView2.DataBind();
+        }
+
+        catch
+        {
+            lblGreska.Text = "Neispravni podaci za unos u bazu";
+        }
+___________________________________________________________________________________________________________________________________________________________
+KOD BOTUNA ZA PROCEDURE
+
+ if (txtNaslov.Text != "" && txtAutor.Text != "" && txtKolicina.Text != "")
+            try
+            {
+                int k = int.Parse(txtKolicina.Text);
+
+                SqlCommand cmd = new SqlCommand("NarudzbaProcedure", new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]));
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@naslov", txtNaslov.Text);
+                cmd.Parameters.AddWithValue("@autor", txtAutor.Text);
+                cmd.Parameters.AddWithValue("@kolicina", k);
+
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                lblPoruka.Text = "Narudzba je spremljena.";
+                GridView1.DataBind();
+            }
+            catch { lblPoruka.Text = "Greska"; }
+        else { lblPoruka.Text = "Pogrešan unos."; }
+
+_______________________________________________________________________________________________________________________________________________________________
+Required Validation Field: - Error message: Morate unijeti u polje
+			   - ControlToValidate: txtNaslov
+
+DODAT U WEB.CONFIG
+<appSettings> 
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" /> 
+</appSettings>
+_________________________________________________________________________________________________________________________________________________________________--
+REQUIRED FIELD VALIDATOR (jeli prazno)
+______________________________________________________________________________________________________________________________________________________________________
+RANGE VALIDATOR ( jeli u rasponu)
+ako polje ne sadrzi nikakvu vrijednost validacija s enece izvrsiti
+unijeti gornju i donju granicu i staviti tip podataka
+______________________________________________________________________________________________________________________________________________________________________
+COMPARE VALIDATION
+control to validate -tu unosimo sta usporeðujemo sa unosom u control to compare
+kod provjere godista ili kad imamo jedan text box ,u control to validate se unosi textbox,spustimo svojstva dolje i u value to compare unesemo godinu ,
+odaberemo tip,te u operatoru odaberemo operacju
+mozemo odabrati kod operatora dali cemo vidjeti jesu jednake,da li je veca od ove itd itd
+______________________________________________________________________________________________________________________________________________________________________
+REGULAR EXPRESSION VALDIATOR ( mail)
+sluzi da korisnicki unos usporedimo sa nekim regularnim izrazom
+u validation expression odaberemo tiop.npr za mail
+______________________________________________________________________________________________________________________________________________________________________
+CUSTOM VALIDATOR(pisemo svoju kontrolu)
+validaton empty field--ono adi provjeru cak i kad je polje prazno
+
+______________________________________________________________________________________________________________________________________________________________________
+WEB.CONFIG
+
+<?xml version="1.0"?>
+
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+
+<configuration>
+
+    <connectionStrings>
+        <add name="ConnectionString" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Authors.mdf;Integrated Security=True"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+    <system.web>
+      <compilation debug="true" targetFramework="4.5" />
+      <httpRuntime targetFramework="4.5" />
+    </system.web>
+<appSettings>
+    <add key ="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
+    <add key="ConnectionString" value="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Authors.mdf;Integrated Security=True"/>
+  </appSettings>
+</configuration>
+___________________________________________________________________________________________________________________________________________________________________
+ZA RAD BOTUNA
+
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+___________________________________________________________________________________________________________________________________________________________________
+STORED PROCEDURE
+CREATE PROCEDURE[dbo].Unos
+@Naslov nvarchar(50),
+@Autor nvarchar(50),
+@Kolicina int
+AS
+	BEGIN TRAN
+		INSERT INTO Narudzba(Naslov, Autor, Kolicina) VALUES (@Naslov, @Autor, @Kolicina)
+			IF @@ERROR<>0
+				BEGIN
+					ROLLBACK TRAN
+						return -1
+					END
+			ELSE
+COMMIT TRAN
+
+UPDATE
+
+USING
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+BOTUN KLIK
+
+protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txtNaziv.Text) || string.IsNullOrWhiteSpace(txtAutor.Text) || string.IsNullOrWhiteSpace(txtKolicina.Text))
+        {
+            Label1.Text = "Obavezno unijeti sva polja!";
+        }
+        else
+        {
+            try {
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Authors.mdf;Integrated Security=True");
+                SqlCommand cmd = new SqlCommand("Unos", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Naslov", txtNaziv.Text);
+                cmd.Parameters.AddWithValue("@Autor", txtAutor.Text);
+                cmd.Parameters.AddWithValue("@Kolicina", txtKolicina.Text);
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                
+                GridView1.DataBind();
+
+
+            }
+            catch { Label1.Text = "Greska prilikom unosa!!!"; }
+        }
+     
+    }
+}
+________________________________________________________________________________________________________________________________________________________-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PAZITI JE LI NAM ODABRAN VB ili C# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+_____________________________________________________________________________________________________________________________________________________________
+=>ako se pronosi samo 1 parametar preko query stringa
+   npr.bottun/hyperlink->property->navigateURL->odaberes i dodas ?varijabla="neka vrjednost" ili upises Druga.aspx?varijabla="neka vrjednost"
+   ->Ovo je u drugoj formi: Label2.Text = Request.QueryString["varijabla"];
+___________________________________________________________________________________________________________________________________________________________
+
+=>Ako ne rade validacijske kontrole
+ -web.config- 
+  <appSettings>   
+	<add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+  </appSettings>
+___________________________________________________________________________________________________________________________________________________________
+=>u web.config
+   <appSettings>
+    <add key="AuthorsConnectionString" value="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Authors.mdf;Integrated Security=True"/>
+  </appSettings>-->ovo smo kopirali od     <connectionStrings>
+        					<add name="AuthorsConnectionString" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|									DataDirectory|\Authors.mdf;Integrated Security=True"providerName="System.Data.SqlClient" />
+     					   </connectionStrings> i samo smo prominili name u key i connectionString u value
+___________________________________________________________________________________________________________________________________________________________
+=>Store procedures-desni klik-new store procedures
+	CREATE PROCEDURE [dbo].[Unos]
+		@ime nvarchar(50),
+		@prezime nvarchar(50),
+		@grad nvarchar(50),
+		@drzava nvarchar(50)
+	AS
+		begin tran
+		INSERT INTO Authors(FirstName,LastName,[State],City) values (@ime,@prezime,@drzava,@grad)
+		if @@ERROR<>0
+			begin 
+				rollback tran
+				return -1
+			end
+		else
+			commit tran
+
+=>Update
+=>refresh
+
+BIT == BOOL 
+________________________________________________________________________
+cijena=(float)(popust(100.0f)
+___________________________________________________________________________________________________________________________________________________________
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string poruka = "";
+
+        if (TextBox1.Text.Length <= 2 || string.IsNullOrWhiteSpace(TextBox2.Text))
+        {
+            poruka = "greska ime mora biti duljine vece  od 2";
+        }
+        else
+        {    
+                try
+                {
+                    SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["AuthorsConnectionString"]);
+                    SqlCommand novi = new SqlCommand("Unos", con);
+
+                    novi.CommandType = CommandType.StoredProcedure;
+                    novi.Parameters.AddWithValue("@ime", TextBox1.Text);
+                    novi.Parameters.AddWithValue("@prezime", TextBox2.Text);
+                    novi.Parameters.AddWithValue("@drzava", TextBox3.Text);
+                    novi.Parameters.AddWithValue("@grad", TextBox4.Text);
+
+                    novi.Connection.Open();
+                    novi.ExecuteNonQuery();
+                    novi.Connection.Close();
+
+                    GridView1.DataBind();
+                }
+                catch
+                {
+
+                    lbl.Text = "greska";
+                }
+            }
+
+        lbl.Text = poruka;
+  }
+___________________________________________________________________________________________________________________________
+
+      int cijena = 0, popust = 0;
+        string poruka = "";
+
+        if (txtPopust.Text != "")
+        {
+            try
+            {
+                popust = int.Parse(txtPopust.Text);
+                if (popust < 5 || popust > 70)
+                {
+                    lblIspis.Text = "Popust mora biti u rasponu 5-70 /n";
+                    return;
+                    
+                }
+            }
+            catch
+            {
+                lblIspis.Text = "Popust mora biti cijeli broj /n";
+                return;
+                
+            }
+        }
+
+        try
+        {
+            cijena = int.Parse(txtCijena.Text);
+        }
+        catch
+        {
+            lblIspis.Text = "Cijena mora biti cijeli broj /n";
+            return;
+            
+        }
+
+        try
+        {
+            cijena = cijena + cijena * 25 / 100;
+            cijena = cijena - cijena * popust / 100;
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+            SqlCommand novi = new SqlCommand("Unos", con);
+
+            novi.CommandType = CommandType.StoredProcedure;
+            novi.Parameters.AddWithValue("@hotel", txtIme.Text);
+            novi.Parameters.AddWithValue("@brZ", int.Parse(DropDownList1.Text));
+            novi.Parameters.AddWithValue("@cijena", cijena);
+            novi.Parameters.AddWithValue("@popust", popust);
+            novi.Parameters.AddWithValue("@dorucak", CheckBox1.Checked);
+
+            novi.Connection.Open();
+            novi.ExecuteNonQuery();
+            novi.Connection.Close();
+            lblIspis.Text = "";
+            GridView1.DataBind();
+        }
+        catch
+        {
+            lblIspis.Text = "Greška!";
+        }
+
+PROCEDURA:
+Stored Procedures ---> desni klik ---> Add new 
+uæi u tablicu i pisati po tome
+ZA OVAJ PRIMJER!!
+CREATE PROCEDURE [dbo].[RezervacijeProcedure]
+	@hotel nvarchar(50),
+	@br_zvjezdica int,
+	@cijena float,
+	@popust int,
+	@dorucak bit
+AS
+BEGIN TRAN
+	INSERT INTO Rezervacije(Hotel,Br_zvjezdica,Cijena,Popust,Dorucak) VALUES (@hotel,@br_zvjezdica,@cijena,@popust,@dorucak)
+	IF @@ERROR<>0
+		BEGIN
+			ROLLBACK TRAN
+			RETURN -1
+		END
+	ELSE
+	COMMIT TRAN
+---> Update ---> Update Database
+
+			SPREMI!!!
+__________________________________________________________________________________________________________________________________________________________
+=>GROUP BY tj.da nam ispise koliko ima autora u gradu
+    SELECT City,COUNT(AuthorID) AS BrAutora
+    from Authors
+    GROUP BY City
+________________________________________________________________________________________________________________________________________
+ako je textboxprazank da ispise isto
+
+SELECT State, COUNT(City) AS Br_Gradova_po_stateu FROM Authors GROUP BY State HAVING (State = @parametar) OR (@parametar = '')
+ ORDER BY Br_Gradova_po_stateu DESC
+
+_____________________________________________________________________________________________________________________________
+
+=>da se primary kljuc sam generira
+  ->property->Is Identity TRUE
+	      Identity Increment 1
+	      Identity Seed 1
+___________________________________________________________________________________________________________________________________________________________
+
+=> DROP DOWN LIST
+   -> selectedItem --> vraca ono sta nam pise u dropdown-u (ako ga zelimo ispisat moramo ga pretvorit u string -- Label1.Text                                                                                                                    = DropDownList1.SelectedItem.ToString();)
+   ->selectedValue --> vraca vrjednost(moze bit int,string...)
+   ->selectedIndex --> vraca poziciju na kojoj se nalazi nas objekt u listi( ako ga zelimo ispisat treba ga pretvorit u string) 
+__________________________________________________________________________________________________________________
+=> ako zelimo da u dropdown-u imamo za odabrat svi
+       --prvo u drop down-u dodamo item svi
+       --AppendDataBoundItems / postavimo na True (ovo je da nam se podaci dohvacaju i iz baze i iz liste od                                 dropdrown)
+       --u sql napisemo SELECT XXX FROM XXX WHERE (City = @parametar) OR (@parametar = 'svi')     
+__________________________________________________________________________________________________________________
+=>ako zelimo upisivat sadrzaj u contentplace...tj bas na master page ne u heading
+	<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+		odi pisemo sta ocemo    
+	</asp:Content>
+
+
+___________________________________________________________________________________________________________________________________________________________
+dropdown
+        try
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["AuthorsConnectionString"]);
+            SqlCommand novi = new SqlCommand("Procedure", con);
+
+            novi.CommandType = CommandType.StoredProcedure;
+            novi.Parameters.AddWithValue("@naziv", TextBox1.Text);
+            novi.Parameters.AddWithValue("@autor", dropdownlist.selectedItem.Tostring());
+            novi.Parameters.AddWithValue("@kolicina", DropDownList.selectedvalue);
+   
+
+            novi.Connection.Open();
+            novi.ExecuteNonQuery();
+            novi.Connection.Close();
+
+            GridView1.DataBind();
+        }
+        catch
+        {
+
+            Label1.Text = "greska";
+        }
+
+___________________________________________________________________________________________________________________________________________________________________
+
+ Label1.Text = DropDownList2.SelectedValue;//broj vrijednost
+ Label2.Text = DropDownList2.SelectedItem.ToString();//odabrani iz dropwdowna
+___________________________________________________________________________________________________________________________________________________________________
+SELECT DISTINCT City, FirstName, LastName
+FROM            Authors
+WHERE        (FirstName = @parametar) OR
+                         (@parametar= 'Odaberi sve')
+___________________________________________________________________________________________________________________________________________________________________
+        for(int i=0;i<9;i++)
+        {
+            TableRow tr = new TableRow();
+            tr.ID = i.ToString();
+            tblSudoku.Rows.Add(tr);
+            for (int j = 0; j < 9; j++)
+            {
+                TextBox t = new TextBox();
+                t.Width = 80;
+                t.Height = 80;
+                t.Font.Size = 25;
+                t.Style.Add("text-align","center");
+                t.ID = j.ToString();
+                t.Text = i.ToString() + " + " + j.ToString();
+                TableCell tc = new TableCell();
+                tr.Cells.Add(tc);
+                tc.Controls.Add(t);
+            }
+        }

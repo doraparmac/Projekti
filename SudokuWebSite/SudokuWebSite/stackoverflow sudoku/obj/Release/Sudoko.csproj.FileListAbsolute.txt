@@ -1,0 +1,7 @@
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\bin\Release\Sudoko.exe
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoko.csprojAssemblyReference.cache
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoku.DataGridSpinnerColumn.resources
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoku.SudokuMainForm.resources
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoko.csproj.GenerateResource.cache
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoko.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\SudokuWebSite\gotovo rješenje nekog barbe s interneta\obj\Release\Sudoko.exe
