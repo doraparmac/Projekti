@@ -1,0 +1,446 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(233, 229, 229);
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: rgb(51, 47, 47);
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .i{
+    color: rgb(51, 47, 47);
+  }
+  
+  li a:hover:not(.active) {
+    background-color:   rgb(223, 213, 213);
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #cccccc;
+
+  }
+  
+  .div-image {
+    background-image: url("../img/1.jpg");
+    background-color: #cccccc;
+    width: 100%;
+    height: 629px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    background-size: cover;
+    animation: slideBg 10s linear infinite 1s;
+    animation-timing-function: ease-in-out;
+    
+  }
+
+  @keyframes slideBg{
+      0% {
+          background-image: url("../img/1.jpg");
+      }
+      25% {
+        background-image: url("../img/2.jpg");
+        }
+      50% {
+        background-image: url("../img/1.jpg");
+      }
+      75% {
+        background-image: url("../img/2.jpg");
+    }
+    100% {
+        background-image: url("../img/1.jpg");
+      }
+  }
+  
+  .div-text {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+
+
+  .div-text input[type=text] {
+    position: absolute;
+    float: right;
+    padding: 10px;
+    width: 680px;
+    left: 0px;
+    top: 80%;
+    font-size: 17px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-style: hidden;
+  }
+
+  .div-main {
+    background-image: url("../img/table-background.jpg");
+    opacity: 0.8;
+    background-color: #e9e0e0;
+    width: 100%;
+    height: 629px;
+  }
+
+  .div-table {
+    text-align: left;
+    position: absolute;
+    top: 30%;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 20px;
+    font-weight: 600;
+    left: 50%;
+    width: 500px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    color: black;  
+  }
+  .div-table-add {
+    text-align: left;
+    position: absolute;
+    top: 20%;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 20px;
+    font-weight: 700;
+    left: 43%;
+    width: 750px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    color: black;  
+  }
+
+
+
+  .div-table input[type=text] {
+    padding: 5px;
+    width: 400px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-style: hidden;
+  }
+
+  .div-table input[type=password] {
+    padding: 5px;
+    width: 200px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-style: hidden;
+    width: 400px;
+  }
+
+  .div-main button {
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    background-color: rgb(51, 47, 47);
+    color: rgb(223, 213, 213);
+    padding: 10px 100px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+
+  .div-user {
+    background-color: #cccccc;
+    width: 100%;
+    height: 629px;
+  }
+
+  
+
+  .div-navigation-bar {
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .table-events{
+    border: 1px solid black;
+  }
+  .div-event {
+    text-align: justify;
+    position: absolute;
+    top: 20%;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: 50%;
+    width: 500px;
+    height: 180px;
+    transform: translate(-50%, -50%);
+    color: black;  
+  }
+
+
+  .div-event-for {
+    background-image: url("../img/zagreb.jpg");
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 15px;
+    font-weight: 200;
+    background-color: #cccccc;
+    height: 630px;
+  }
+
+  .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #006994;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+  .sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+  .sidebar li {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+  .sidebar a:hover {
+  color: #808080;
+}
+
+  .sidebar li:hover {
+  color: #808080;
+}
+
+  .sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+	  /* Popup container - can be anything you want */
+	.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+  .popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+  .popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+  .popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+  @-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+  @keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+  .openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #006994;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+  .openbtn:hover {
+  background-color: #444;
+  }
+
+  .table-event{
+    margin-left:5%;
+    margin-right:5%;
+    border-radius: 5px;
+    background-color: #e9e0e0;
+    border-collapse: separate;
+  }
+  table.table-event td, th {
+    padding: 5px 10px;
+    width: 25%;
+  }
+
+table.table-event tr:nth-child(even) td:nth-child(even){
+  background: #808080;
+}
+table.table-event tr:nth-child(odd) td:nth-child(odd){
+  background: #808080;
+}
+
+  .div-navigation-bar {
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    height: 50px;
+    background-color: #444;
+  }
+
+  .dropdown {
+    color: black;
+    padding: 9px 20px;
+    border-radius: 10px;
+    position:relative;
+    background-color: #808080;
+
+  }
+
+  .btnF{
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    background-color: #808080;
+    color: rgb(223, 213, 213);
+    padding: 10px 50px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color:black;
+    opacity: 0.9;
+  }
+  .all-events {
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 20px;
+    font-weight: 600;
+    height: 570px;
+    color: black;  
+    background-image: url("../img/zagreb.jpg");
+    opacity: 0.8;
+    overflow-y: scroll;
+  }
+
+  textarea {
+  width: 600px;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+
+.div-event {
+  background-image: url("../img/event.jpg");
+  text-align: justify;
+  position: absolute;
+  top: 50%;
+  font-family: "Palatino Linotype", "Book Antiqua", serif;
+  font-size: 15px;
+  font-weight: 400;
+  left: 50%;
+  width: 650px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  color: black;  
+  overflow-y: scroll;
+}
+
+
+  .div-event-for {
+    background-image: url("../img/zagreb.jpg");
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 15px;
+    font-weight: 200;
+    background-color: #cccccc;
+    height: 630px;
+    color: #cccccc;
+  }
+
+  .message{
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 20px;
+    font-weight: 200;
+    color: red;
+  }
+
+  .search{
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 15px;
+    width: 300px;
+    height: 30px;
+    padding: 10px;
+    opacity: 0.8;
+    color: #cccccc;
+    background-color:#808080;
+
+  }
+
+#main {
+  float: left;
+  transition: margin-left .5s;
+}
+
+.checked {
+  color: orange;
+}
+
+ul.x{
+		position: absolute;
+		top:110%;
+
+	}
+
+
